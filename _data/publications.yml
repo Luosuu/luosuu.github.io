@@ -1,22 +1,22 @@
 main:
 
-  - title: Continual Learning for Abdominal Multi-Organ and Tumor Segmentation
-    authors: Yixiao Zhang, Xinyi Li, Huimiao Chen, Alan Yuille, <strong>Yaoyao Liu*</strong>, Zongwei Zhou* (*Corresponding authors)
-    conference_short: MICCAI
-    conference: International Conference on Medical Image Computing and Computer-Assisted Intervention <strong>(MICCAI)</strong>, 2023.
-    pdf: https://arxiv.org/pdf/2306.00988.pdf
-    code: https://github.com/MrGiovanni/ContinualLearning
-    bibtex: https://bib.yliu.me/MICCAI23.txt
-    image: ./assets/img/teaser_example_2.png
-    notes: Early Accept
+  - title: Optimizing Data I/O for LLM Datasets on Remote Storage
+    authors: <strong>Tianle Zhong</strong>, Jiechen Zhao, Xindi Guo, Qiang Su, Geoffrey Fox
+    conference_short: AIOps
+    conference: Cloud Intelligence/AIOps Workshop (Co-colated with ASPLOS'24).
+    pdf: ./assets/img/teaser_example_2.png
+    # code: https://github.com/MrGiovanni/ContinualLearning
+    # bibtex: https://bib.yliu.me/MICCAI23.txt
+    image: ./assets/img/aiops_design.png
+    # notes: Early Accept
 
-  - title: "Mnemonics Training: Multi-Class Incremental Learning without Forgetting"
-    authors: <strong>Yaoyao Liu</strong>, Yuting Su, An-An Liu, Bernt Schiele, Qianru Sun
-    conference_short: CVPR
-    conference: IEEE/CVF Conference on Computer Vision and Pattern Recognition <strong>(CVPR)</strong>, 2020.
+  - title: "Spherical Convolutional Recurrent Neural Network for Real-Time Sound Source Tracking"
+    authors: <strong>Tianle Zhong</strong>, Israel Mendoza Velzquez, Yi Ren, Hctor M. Prez Meana, Yoichi Haneda
+    conference_short: ICASSP
+    conference: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2021.
     pdf: https://arxiv.org/pdf/2002.10211.pdf
-    code: https://github.com/yaoyao-liu/class-incremental-learning/tree/main/mnemonics-training
-    page: https://class-il.mpi-inf.mpg.de/mnemonics/
+    # code: https://github.com/yaoyao-liu/class-incremental-learning/tree/main/mnemonics-training
+    # page: https://class-il.mpi-inf.mpg.de/mnemonics/
     bibtex: https://class-il.mpi-inf.mpg.de/mnemonics/
-    notes: Oral Presentation
-    image: ./assets/img/teaser_example.png
+    # notes: Oral Presentation
+    image: ./assets/img/zhong2-p5-zhong-large.gif
