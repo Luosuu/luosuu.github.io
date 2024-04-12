@@ -3,8 +3,8 @@ main:
   - title: Optimizing Data I/O for LLM Datasets on Remote Storage
     authors: <strong>Tianle Zhong</strong>, Jiechen Zhao, Xindi Guo, Qiang Su, Geoffrey Fox
     conference_short: AIOps
-    conference: Cloud Intelligence/AIOps Workshop (Co-colated with ASPLOS'24).
-    pdf: ./assets/img/teaser_example_2.png
+    conference: Cloud Intelligence/AIOps Workshop (Co-located with ASPLOS'24).
+    pdf: ./assets/files/AIOps_24.pdf
     # code: https://github.com/MrGiovanni/ContinualLearning
     # bibtex: https://bib.yliu.me/MICCAI23.txt
     image: ./assets/img/aiops_design.png
@@ -14,7 +14,7 @@ main:
     authors: <strong>Tianle Zhong</strong>, Israel Mendoza Velzquez, Yi Ren, Hctor M. Prez Meana, Yoichi Haneda
     conference_short: ICASSP
     conference: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2021.
-    pdf: https://arxiv.org/pdf/2002.10211.pdf
+    pdf: https://ieeexplore.ieee.org/document/9747845
     # code: https://github.com/yaoyao-liu/class-incremental-learning/tree/main/mnemonics-training
     # page: https://class-il.mpi-inf.mpg.de/mnemonics/
     bibtex: https://class-il.mpi-inf.mpg.de/mnemonics/
