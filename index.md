@@ -4,6 +4,8 @@ layout: homepage
 
 ## About Me
 
+*I am actively looking for internship opportunities, please do not hesitate to contact me if you know any of them. I appreciate it very much!*
+
 Greetings! I am a second-year Ph.D. student in Computer Science advised by [Prof. Geoffrey Fox](https://engineering.virginia.edu/faculty/geoffrey-c-fox). 
 
 Before UVA, I received my B.Eng in CS and B.Sc in Applied Mathematics at [University of Electronic Science and Technology of China](https://en.uestc.edu.cn/) in 2022.
