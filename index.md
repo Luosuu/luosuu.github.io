@@ -47,7 +47,6 @@ I have the exact same first name with one of my favorite actors [Louis Koo Tin-l
 My work heavily relies on Python and Rust. I release my code as much as possible on GitHub. Check out more lovely logos from [SAWARATSUKI/ServiceLogos](https://github.com/SAWARATSUKI/ServiceLogos).
 
 <div style="display: flex; justify-content: center;">
-  <img src="./assets/img/Python.png" alt="Python" style="height: 130px; margin-right: 5px;">
-  <img src="./assets/img/Rust.png" alt="Rust" style="height: 130px; margin-right: 5px;">
-  <img src="./assets/img/Github.png" alt="Github" style="height: 130px;">
+  <img src="./assets/img/Python.png" alt="Python" style="height: 110px; margin-right: 5px;">
+  <img src="./assets/img/Rust.png" alt="Rust" style="height: 110px; margin-right: 5px;">
 </div>
