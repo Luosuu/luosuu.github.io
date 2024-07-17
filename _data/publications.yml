@@ -13,7 +13,7 @@ main:
   - title: "Spherical Convolutional Recurrent Neural Network for Real-Time Sound Source Tracking"
     authors: <strong>Tianle Zhong</strong>, Israel Mendoza Velzquez, Yi Ren, Hctor M. Prez Meana, Yoichi Haneda
     conference_short: ICASSP
-    conference: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2021.
+    conference: IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2022.
     pdf: https://ieeexplore.ieee.org/document/9747845
     # code: https://github.com/yaoyao-liu/class-incremental-learning/tree/main/mnemonics-training
     # page: https://class-il.mpi-inf.mpg.de/mnemonics/
