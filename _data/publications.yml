@@ -17,6 +17,6 @@ main:
     pdf: https://ieeexplore.ieee.org/document/9747845
     # code: https://github.com/yaoyao-liu/class-incremental-learning/tree/main/mnemonics-training
     # page: https://class-il.mpi-inf.mpg.de/mnemonics/
-    bibtex: ./assets/files/icassp_2021.bib
+    bibtex: ./assets/files/icassp_2022.bib
     # notes: Oral Presentation
     image: ./assets/img/zhong2-p5-zhong-large.gif
