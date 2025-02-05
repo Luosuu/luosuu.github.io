@@ -4,7 +4,7 @@ layout: homepage
 
 ## About Me
 
-Greetings! I am a second-year Ph.D. student in Computer Science advised by [Prof. Geoffrey Fox](https://engineering.virginia.edu/faculty/geoffrey-c-fox). 
+Greetings! I am a third-year Ph.D. student in Computer Science advised by [Prof. Geoffrey Fox](https://engineering.virginia.edu/faculty/geoffrey-c-fox). I also work closely with [Prof. Keren Zhou](https://www.jokeren.tech/).
 
 Before UVA, I received my B.Eng in CS and B.Sc in Applied Mathematics at [University of Electronic Science and Technology of China](https://en.uestc.edu.cn/) in 2022.
 
