@@ -1,6 +1,14 @@
 main:
 
-  - title: Optimizing Data I/O for LLM Datasets on Remote Storage
+  - title: "Youmu: Efficient Columnar Data Pipeline for LLM Training"
+    authors: <strong>Tianle Zhong</strong>, Jiechen Zhao, Qiang Su, Geoffrey Fox
+    conference_short: MLSys
+    conference: Eighth Conference on Machine Learning and Systems (MLSys), 2025
+    # code: https://github.com/MrGiovanni/ContinualLearning
+    # bibtex: https://bib.yliu.me/MICCAI23.txt
+    image: ./assets/img/Youmu_design.png
+
+  - title: "Reimu: Optimizing Data I/O for LLM Datasets on Remote Storage"
     authors: <strong>Tianle Zhong</strong>, Jiechen Zhao, Xindi Guo, Qiang Su, Geoffrey Fox
     conference_short: AIOps
     conference: Cloud Intelligence/AIOps Workshop (Co-located with ASPLOS'24).
