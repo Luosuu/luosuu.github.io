@@ -33,8 +33,6 @@ Actually you can write (or pronounce) my name in many different ways besides "Ti
 
 * 鐘天樂 (Traditional Chinese)
 
-* Shou, Tenraku (Japanese Kanji pronunciation)
-
 * Chung, Tin-lok (Wade-Giles romanization)
 
 Another fun fact: 
