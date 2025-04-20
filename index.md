@@ -19,7 +19,8 @@ I also did an exchange-study in Japan for one year during my undergrad at [The U
 
 ## News
 
-- **[Apr. 2024]** I will present at AIOps workshop of ASPLOS 2024 in San Diego!
+- **[May 2025]** I will present [Youmu](https://mlsys.org/virtual/2025/poster/3272) at MLSys 2025 in Santa Clara!
+- **[Apr. 2024]** I will present [Reimu](./assets/files/AIOps_24.pdf) at AIOps workshop of ASPLOS 2024 in San Diego!
 
 {% include_relative _includes/publications.md %}
 

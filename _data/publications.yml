@@ -6,7 +6,9 @@ main:
     conference: Eighth Conference on Machine Learning and Systems (MLSys), 2025
     # code: https://github.com/MrGiovanni/ContinualLearning
     # bibtex: https://bib.yliu.me/MICCAI23.txt
+    pdf: https://mlsys.org/virtual/2025/poster/3272
     image: ./assets/img/Youmu_design.png
+    # notes: Oral Presentation
 
   - title: "Reimu: Optimizing Data I/O for LLM Datasets on Remote Storage"
     authors: <strong>Tianle Zhong</strong>, Jiechen Zhao, Xindi Guo, Qiang Su, Geoffrey Fox
@@ -14,7 +16,7 @@ main:
     conference: Cloud Intelligence/AIOps Workshop (Co-located with ASPLOS'24).
     pdf: ./assets/files/AIOps_24.pdf
     # code: https://github.com/MrGiovanni/ContinualLearning
-    # bibtex: https://bib.yliu.me/MICCAI23.txt
+    bibtex: ./assets/files/reimu.bib
     image: ./assets/img/aiops_design.png
     # notes: Early Accept
 
