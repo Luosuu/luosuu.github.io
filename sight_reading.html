@@ -278,7 +278,7 @@
         
         <div class="feedback" id="feedback"></div>
         
-        <div class="buttons">
+        <div class="buttons" id="answer-buttons">
             <button onclick="checkAnswer('c')">C</button>
             <button onclick="checkAnswer('d')">D</button>
             <button onclick="checkAnswer('e')">E</button>
@@ -315,6 +315,17 @@
                     <select id="octave-range" onchange="startGame()">
                         <option value="middle">Standard Range</option>
                         <option value="extended">Extended Range</option>
+                    </select>
+                </label>
+            </div>
+            
+            <div style="margin-top: 10px;">
+                <label>
+                    <span>Notation: </span>
+                    <select id="notation-type" onchange="updateNotationButtons()">
+                        <option value="letter">Letter Names (C, D, E...)</option>
+                        <option value="solfege">Solfège (Do, Re, Mi...)</option>
+                        <option value="both">Both Notations</option>
                     </select>
                 </label>
             </div>
@@ -369,41 +380,41 @@
         let gameRunning = false;
         let helpVisible = false;
         
-        // Note definitions with clef information
+        // Note definitions with clef information and solfège names
         const noteDefinitions = {
             // Treble clef notes (right hand)
             // Middle octave (4)
-            'c4': { step: 'C', octave: 4, display: 'C', clef: 'treble' },
-            'd4': { step: 'D', octave: 4, display: 'D', clef: 'treble' },
-            'e4': { step: 'E', octave: 4, display: 'E', clef: 'treble' },
-            'f4': { step: 'F', octave: 4, display: 'F', clef: 'treble' },
-            'g4': { step: 'G', octave: 4, display: 'G', clef: 'treble' },
-            'a4': { step: 'A', octave: 4, display: 'A', clef: 'treble' },
-            'b4': { step: 'B', octave: 4, display: 'B', clef: 'treble' },
+            'c4': { step: 'C', octave: 4, display: 'C', solfege: 'Do', clef: 'treble' },
+            'd4': { step: 'D', octave: 4, display: 'D', solfege: 'Re', clef: 'treble' },
+            'e4': { step: 'E', octave: 4, display: 'E', solfege: 'Mi', clef: 'treble' },
+            'f4': { step: 'F', octave: 4, display: 'F', solfege: 'Fa', clef: 'treble' },
+            'g4': { step: 'G', octave: 4, display: 'G', solfege: 'Sol', clef: 'treble' },
+            'a4': { step: 'A', octave: 4, display: 'A', solfege: 'La', clef: 'treble' },
+            'b4': { step: 'B', octave: 4, display: 'B', solfege: 'Ti', clef: 'treble' },
             
             // Upper octave (5)
-            'c5': { step: 'C', octave: 5, display: 'C', clef: 'treble' },
-            'd5': { step: 'D', octave: 5, display: 'D', clef: 'treble' },
-            'e5': { step: 'E', octave: 5, display: 'E', clef: 'treble' },
+            'c5': { step: 'C', octave: 5, display: 'C', solfege: 'Do', clef: 'treble' },
+            'd5': { step: 'D', octave: 5, display: 'D', solfege: 'Re', clef: 'treble' },
+            'e5': { step: 'E', octave: 5, display: 'E', solfege: 'Mi', clef: 'treble' },
             
             // Lower octave (3) - still treble clef
-            'a3': { step: 'A', octave: 3, display: 'A', clef: 'treble' },
-            'b3': { step: 'B', octave: 3, display: 'B', clef: 'treble' },
+            'a3': { step: 'A', octave: 3, display: 'A', solfege: 'La', clef: 'treble' },
+            'b3': { step: 'B', octave: 3, display: 'B', solfege: 'Ti', clef: 'treble' },
             
             // Bass clef notes (left hand)
-            'c2': { step: 'C', octave: 2, display: 'C', clef: 'bass' },
-            'd2': { step: 'D', octave: 2, display: 'D', clef: 'bass' },
-            'e2': { step: 'E', octave: 2, display: 'E', clef: 'bass' },
-            'f2': { step: 'F', octave: 2, display: 'F', clef: 'bass' },
-            'g2': { step: 'G', octave: 2, display: 'G', clef: 'bass' },
-            'a2': { step: 'A', octave: 2, display: 'A', clef: 'bass' },
-            'b2': { step: 'B', octave: 2, display: 'B', clef: 'bass' },
+            'c2': { step: 'C', octave: 2, display: 'C', solfege: 'Do', clef: 'bass' },
+            'd2': { step: 'D', octave: 2, display: 'D', solfege: 'Re', clef: 'bass' },
+            'e2': { step: 'E', octave: 2, display: 'E', solfege: 'Mi', clef: 'bass' },
+            'f2': { step: 'F', octave: 2, display: 'F', solfege: 'Fa', clef: 'bass' },
+            'g2': { step: 'G', octave: 2, display: 'G', solfege: 'Sol', clef: 'bass' },
+            'a2': { step: 'A', octave: 2, display: 'A', solfege: 'La', clef: 'bass' },
+            'b2': { step: 'B', octave: 2, display: 'B', solfege: 'Ti', clef: 'bass' },
             
-            'c3': { step: 'C', octave: 3, display: 'C', clef: 'bass' },
-            'd3': { step: 'D', octave: 3, display: 'D', clef: 'bass' },
-            'e3': { step: 'E', octave: 3, display: 'E', clef: 'bass' },
-            'f3': { step: 'F', octave: 3, display: 'F', clef: 'bass' },
-            'g3': { step: 'G', octave: 3, display: 'G', clef: 'bass' }
+            'c3': { step: 'C', octave: 3, display: 'C', solfege: 'Do', clef: 'bass' },
+            'd3': { step: 'D', octave: 3, display: 'D', solfege: 'Re', clef: 'bass' },
+            'e3': { step: 'E', octave: 3, display: 'E', solfege: 'Mi', clef: 'bass' },
+            'f3': { step: 'F', octave: 3, display: 'F', solfege: 'Fa', clef: 'bass' },
+            'g3': { step: 'G', octave: 3, display: 'G', solfege: 'Sol', clef: 'bass' }
         };
         
         function initializeGame() {
@@ -461,6 +472,38 @@
                 }
             });
             
+            // Function to update button labels based on notation type
+            function updateNotationButtons() {
+                const notationType = document.getElementById('notation-type').value;
+                const buttons = document.querySelectorAll('#answer-buttons button');
+                
+                // Define the mapping between letter names and solfège names
+                const solfegeNames = {
+                    'c': 'Do',
+                    'd': 'Re',
+                    'e': 'Mi',
+                    'f': 'Fa',
+                    'g': 'Sol',
+                    'a': 'La',
+                    'b': 'Ti'
+                };
+                
+                // Update button labels based on selected notation type
+                buttons.forEach(button => {
+                    // Extract the note letter from the onclick attribute
+                    const noteLetter = button.getAttribute('onclick').match(/'([a-g])'/)[1];
+                    
+                    // Update button text based on notation type
+                    if (notationType === 'letter') {
+                        button.textContent = noteLetter.toUpperCase();
+                    } else if (notationType === 'solfege') {
+                        button.textContent = solfegeNames[noteLetter];
+                    } else { // both
+                        button.textContent = `${noteLetter.toUpperCase()} (${solfegeNames[noteLetter]})`;
+                    }
+                });
+            }
+            
             // Add event listeners
             document.getElementById('difficulty-level').addEventListener('change', function() {
                 startGame();
@@ -472,6 +515,10 @@
             
             document.getElementById('clef-type').addEventListener('change', function() {
                 startGame();
+            });
+            
+            document.getElementById('notation-type').addEventListener('change', function() {
+                updateNotationButtons();
             });
             
             document.getElementById('show-clef').addEventListener('change', function() {
@@ -488,6 +535,9 @@
             // Start the game when OSMD is loaded
             document.getElementById('loading').classList.remove('hidden');
             document.getElementById('osmd-container').classList.add('hidden');
+            
+            // Initialize button labels based on notation type
+            updateNotationButtons();
             
             // Create empty score to initialize OSMD
             createEmptyScore().then(() => {
@@ -741,7 +791,7 @@
                     debugDisplay.style.borderRadius = '5px';
                     debugDisplay.style.border = '2px solid #e74c3c';
                     debugDisplay.style.zIndex = '1000';
-                    debugDisplay.textContent = `THIS IS ${noteStep} (${noteStep.toLowerCase()} key)`;
+                    debugDisplay.textContent = `${noteStep} (${note.solfege})`;
                     debugDisplay.id = 'debug-note-display';
                     document.getElementById('osmd-container').appendChild(debugDisplay);
                 }
@@ -848,8 +898,8 @@
                 const octaveDisplay = noteInfo.octave;
                 
                 feedback.textContent = streak > 1 ? 
-                    `Correct! ${streak} note streak! (${noteInfo.step}${octaveDisplay}, ${clefName} Clef)` : 
-                    `Correct! (${noteInfo.step}${octaveDisplay}, ${clefName} Clef)`;
+                    `Correct! ${streak} note streak! (${noteInfo.step} "${noteInfo.solfege}", ${clefName} Clef)` : 
+                    `Correct! (${noteInfo.step} "${noteInfo.solfege}", ${clefName} Clef)`;
                 feedback.style.color = '#27ae60';
                 
                 osmdContainer.classList.add('correct-answer');
@@ -865,7 +915,7 @@
                 const clefName = noteInfo.clef === 'treble' ? 'Treble' : 'Bass';
                 const octaveDisplay = noteInfo.octave;
                 
-                feedback.textContent = `Wrong! That was ${noteInfo.step} (${noteInfo.step}${octaveDisplay}, ${clefName} Clef)`;
+                feedback.textContent = `Wrong! That was ${noteInfo.step} "${noteInfo.solfege}" (${clefName} Clef)`;
                 feedback.style.color = '#e74c3c';
                 
                 osmdContainer.classList.add('wrong-answer');
@@ -950,6 +1000,13 @@
                         </li>
                     </ul>
                     
+                    <h3>Notation Options:</h3>
+                    <ul>
+                        <li>Letter Names: Use traditional letter names (C, D, E, F, G, A, B)</li>
+                        <li>Solfège: Use solfège syllables (Do, Re, Mi, Fa, Sol, La, Ti)</li>
+                        <li>Both: Display both notations together</li>
+                    </ul>
+                    
                     <h3>Clef Options:</h3>
                     <ul>
                         <li>Treble Clef (Right Hand): Higher pitch notes, typically played with the right hand</li>
@@ -962,11 +1019,12 @@
                         <li>Show Clef Symbol: Toggle clef display to test note recognition without clef visual cues</li>
                         <li>Show Clef Name: Display the current clef name (treble or bass) in the corner</li>
                         <li>Extended Range: Adds notes above and below the standard range</li>
+                        <li>Debug Mode: Shows the current note directly on screen</li>
                     </ul>
                     
                     <h3>Note Reading:</h3>
-                    <p>When playing, you only need to identify the note letter (C, D, E, etc.), not the octave.</p>
-                    <p>The game will tell you the full note (including octave and clef) after each answer.</p>
+                    <p>When playing, you only need to identify the note letter (C/Do, D/Re, etc.), not the octave.</p>
+                    <p>The game will tell you the full note (including letter name, solfège, octave and clef) after each answer.</p>
                     <p>Octave numbering: Middle C is C4, the octave above is C5, and octaves below are C3, C2, etc.</p>
                     <button id="close-help" style="margin-top: 20px; padding: 10px 15px;">Close Help</button>
                 `;
