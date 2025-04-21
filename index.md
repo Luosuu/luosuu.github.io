@@ -40,6 +40,7 @@ Another fun fact:
 
 I have the exact same first name with one of my favorite actors [Louis Koo Tin-lok, 古天樂](https://en.wikipedia.org/wiki/Louis_Koo).
 
+I've created a simple [Music Sight Reading Game](/sight_reading.html) you can play!
 
 My work heavily relies on Python and Rust. I release my code as much as possible on GitHub. 
 

@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Sight Reading Game</title>
+    <script src="./assets/js/lib/opensheetmusicdisplay.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .game-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 25px;
+            width: 95%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .game-container {
+                padding: 10px;
+                width: 98%;
+            }
+            
+            h1 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+        }
+        #osmd-container {
+            width: 100%;
+            height: 300px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            #osmd-container {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #osmd-container {
+                height: 200px;
+            }
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+            max-width: 700px;
+            width: 100%;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 2px solid #3498db;
+            background-color: white;
+            color: #3498db;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .buttons {
+                gap: 8px;
+                margin-top: 20px;
+            }
+            button {
+                padding: 10px 16px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .buttons {
+                gap: 6px;
+                margin-top: 15px;
+            }
+            button {
+                padding: 8px 12px;
+                font-size: 15px;
+                min-width: 60px;
+            }
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .score, .timer {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 10px 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .feedback {
+            margin: 20px 0;
+            font-size: 20px;
+            min-height: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .game-button {
+            padding: 15px 25px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .game-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .settings {
+            margin-top: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            width: 100%;
+        }
+        .difficulty {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .difficulty label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .settings {
+                padding: 12px;
+                margin-top: 20px;
+            }
+            .difficulty {
+                gap: 12px;
+                margin-bottom: 12px;
+            }
+            .difficulty label {
+                font-size: 15px;
+            }
+            select {
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .settings {
+                padding: 10px;
+                margin-top: 15px;
+                font-size: 14px;
+            }
+            .difficulty {
+                gap: 10px;
+                margin-bottom: 10px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .difficulty label {
+                margin-bottom: 8px;
+                font-size: 14px;
+            }
+            select {
+                font-size: 14px;
+                max-width: 100%;
+            }
+        }
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        .streak {
+            color: #e67e22;
+        }
+        .correct-answer {
+            animation: correctPulse 0.6s;
+        }
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .wrong-answer {
+            animation: wrongShake 0.5s;
+        }
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .keyboard-shortcuts {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        #loading {
+            text-align: center;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Music Sight Reading Game</h1>
+    
+    <div class="game-container">
+        <div id="loading">Loading music notation...</div>
+        <div id="osmd-container" class="hidden"></div>
+        
+        <div class="stats-container">
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="timer">Time: <span id="timer">0</span>s</div>
+        </div>
+        
+        <div class="feedback" id="feedback"></div>
+        
+        <div class="buttons">
+            <button onclick="checkAnswer('c')">C</button>
+            <button onclick="checkAnswer('d')">D</button>
+            <button onclick="checkAnswer('e')">E</button>
+            <button onclick="checkAnswer('f')">F</button>
+            <button onclick="checkAnswer('g')">G</button>
+            <button onclick="checkAnswer('a')">A</button>
+            <button onclick="checkAnswer('b')">B</button>
+        </div>
+        
+        <div class="settings">
+            <div class="difficulty">
+                <label>
+                    <span>Difficulty: </span>
+                    <select id="difficulty-level" onchange="startGame()">
+                        <option value="beginner">Beginner (C, D, E only)</option>
+                        <option value="intermediate">Intermediate (C through G)</option>
+                        <option value="advanced">Advanced (All notes)</option>
+                    </select>
+                </label>
+            </div>
+            
+            <div style="margin-top: 10px; display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <label style="margin-right: 15px;">
+                    <span>Clef: </span>
+                    <select id="clef-type" onchange="startGame()">
+                        <option value="treble">Treble Clef (Right Hand)</option>
+                        <option value="bass">Bass Clef (Left Hand)</option>
+                        <option value="both">Both Clefs (Random)</option>
+                    </select>
+                </label>
+                
+                <label>
+                    <span>Octave Range: </span>
+                    <select id="octave-range" onchange="startGame()">
+                        <option value="middle">Standard Range</option>
+                        <option value="extended">Extended Range</option>
+                    </select>
+                </label>
+            </div>
+            
+            <div style="margin-top: 10px;">
+                <label>
+                    <input type="checkbox" id="show-clef" checked> 
+                    <span>Show Clef Symbol</span>
+                </label>
+                
+                <label style="margin-left: 15px;">
+                    <input type="checkbox" id="show-clef-name" checked> 
+                    <span>Show Clef Name</span>
+                </label>
+                
+                <label style="margin-left: 15px;">
+                    <input type="checkbox" id="debug-mode"> 
+                    <span>Debug Mode</span>
+                </label>
+            </div>
+            
+            <div class="keyboard-shortcuts">
+                Keyboard shortcuts: Press C, D, E, F, G, A, B keys to select notes
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="game-button" onclick="startGame()">Start New Game</button>
+            <button class="game-button" onclick="toggleHelp()">Help</button>
+        </div>
+    </div>
+    
+    <script>
+        // Wait for OSMD to be available
+        window.onload = function() {
+            if (typeof opensheetmusicdisplay === 'undefined') {
+                document.getElementById('feedback').textContent = "Error: OpenSheetMusicDisplay library not found";
+                document.getElementById('feedback').style.color = 'red';
+                return;
+            }
+            
+            initializeGame();
+        };
+        
+        // Game state variables
+        let osmd;
+        let currentNote = '';
+        let score = 0;
+        let streak = 0;
+        let timer = 0;
+        let timerInterval;
+        let gameRunning = false;
+        let helpVisible = false;
+        
+        // Note definitions with clef information
+        const noteDefinitions = {
+            // Treble clef notes (right hand)
+            // Middle octave (4)
+            'c4': { step: 'C', octave: 4, display: 'C', clef: 'treble' },
+            'd4': { step: 'D', octave: 4, display: 'D', clef: 'treble' },
+            'e4': { step: 'E', octave: 4, display: 'E', clef: 'treble' },
+            'f4': { step: 'F', octave: 4, display: 'F', clef: 'treble' },
+            'g4': { step: 'G', octave: 4, display: 'G', clef: 'treble' },
+            'a4': { step: 'A', octave: 4, display: 'A', clef: 'treble' },
+            'b4': { step: 'B', octave: 4, display: 'B', clef: 'treble' },
+            
+            // Upper octave (5)
+            'c5': { step: 'C', octave: 5, display: 'C', clef: 'treble' },
+            'd5': { step: 'D', octave: 5, display: 'D', clef: 'treble' },
+            'e5': { step: 'E', octave: 5, display: 'E', clef: 'treble' },
+            
+            // Lower octave (3) - still treble clef
+            'a3': { step: 'A', octave: 3, display: 'A', clef: 'treble' },
+            'b3': { step: 'B', octave: 3, display: 'B', clef: 'treble' },
+            
+            // Bass clef notes (left hand)
+            'c2': { step: 'C', octave: 2, display: 'C', clef: 'bass' },
+            'd2': { step: 'D', octave: 2, display: 'D', clef: 'bass' },
+            'e2': { step: 'E', octave: 2, display: 'E', clef: 'bass' },
+            'f2': { step: 'F', octave: 2, display: 'F', clef: 'bass' },
+            'g2': { step: 'G', octave: 2, display: 'G', clef: 'bass' },
+            'a2': { step: 'A', octave: 2, display: 'A', clef: 'bass' },
+            'b2': { step: 'B', octave: 2, display: 'B', clef: 'bass' },
+            
+            'c3': { step: 'C', octave: 3, display: 'C', clef: 'bass' },
+            'd3': { step: 'D', octave: 3, display: 'D', clef: 'bass' },
+            'e3': { step: 'E', octave: 3, display: 'E', clef: 'bass' },
+            'f3': { step: 'F', octave: 3, display: 'F', clef: 'bass' },
+            'g3': { step: 'G', octave: 3, display: 'G', clef: 'bass' }
+        };
+        
+        function initializeGame() {
+            // Initialize debug messages
+            console.log("=====================================");
+            console.log("INITIALIZING SIGHT READING GAME");
+            console.log("Turn on 'Debug Mode' checkbox to see note names");
+            console.log("=====================================");
+            
+            // Calculate appropriate scaling based on screen size
+            const calculateScaling = () => {
+                const width = window.innerWidth;
+                
+                // Base scaling on viewport width
+                if (width < 480) {
+                    return 0.8;  // Small mobile screens
+                } else if (width < 768) {
+                    return 1.0;  // Larger mobile and small tablets
+                } else if (width < 1024) {
+                    return 1.2;  // Tablets and small desktops
+                } else {
+                    return 1.5;  // Large desktops
+                }
+            };
+            
+            // Initialize OpenSheetMusicDisplay with responsive settings
+            osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("osmd-container", {
+                autoResize: true,
+                drawCredits: false,
+                drawTitle: false,
+                drawSubtitle: false,
+                drawComposer: false,
+                drawLyricist: false,
+                drawPartNames: false,
+                disableCursor: true
+            });
+            
+            // Set initial zoom/scale separately
+            try {
+                osmd.zoom = calculateScaling();
+            } catch (err) {
+                console.warn("Could not set initial zoom:", err);
+            }
+            
+            // Handle window resize to update scaling
+            window.addEventListener('resize', () => {
+                if (osmd) {
+                    try {
+                        // Try to update zoom on resize
+                        osmd.zoom = calculateScaling();
+                        osmd.render();
+                    } catch (err) {
+                        console.warn("Error updating zoom on resize:", err);
+                    }
+                }
+            });
+            
+            // Add event listeners
+            document.getElementById('difficulty-level').addEventListener('change', function() {
+                startGame();
+            });
+            
+            document.getElementById('octave-range').addEventListener('change', function() {
+                startGame();
+            });
+            
+            document.getElementById('clef-type').addEventListener('change', function() {
+                startGame();
+            });
+            
+            document.getElementById('show-clef').addEventListener('change', function() {
+                displayRandomNote();
+            });
+            
+            document.getElementById('show-clef-name').addEventListener('change', function() {
+                displayRandomNote();
+            });
+            
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', handleKeyPress);
+            
+            // Start the game when OSMD is loaded
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('osmd-container').classList.add('hidden');
+            
+            // Create empty score to initialize OSMD
+            createEmptyScore().then(() => {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('osmd-container').classList.remove('hidden');
+                startGame();
+            }).catch(err => {
+                console.error("Error initializing OSMD:", err);
+                document.getElementById('feedback').textContent = "Error initializing music display";
+                document.getElementById('feedback').style.color = 'red';
+            });
+        }
+        
+        async function createEmptyScore() {
+            const emptyMusicXML = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.1">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Music</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key>
+          <fifths>0</fifths>
+        </key>
+        <time>
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+      </attributes>
+      <note>
+        <pitch>
+          <step>C</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>`;
+            
+            try {
+                await osmd.load(emptyMusicXML);
+                await osmd.render();
+            } catch (err) {
+                console.error("Error creating empty score:", err);
+                throw err;
+            }
+        }
+        
+        function getAvailableNotes() {
+            const difficulty = document.getElementById('difficulty-level').value;
+            const octaveRange = document.getElementById('octave-range').value;
+            const clefType = document.getElementById('clef-type').value;
+            
+            // Arrays for different clefs
+            let trebleNotes = [];
+            let bassNotes = [];
+            
+            // Treble clef notes based on difficulty
+            if (difficulty === 'beginner') {
+                trebleNotes = ['c4', 'd4', 'e4'];
+            } else if (difficulty === 'intermediate') {
+                trebleNotes = ['c4', 'd4', 'e4', 'f4', 'g4'];
+            } else { // advanced
+                trebleNotes = ['c4', 'd4', 'e4', 'f4', 'g4', 'a4', 'b4'];
+            }
+            
+            // Bass clef notes based on difficulty
+            if (difficulty === 'beginner') {
+                bassNotes = ['c3', 'd3', 'e3'];
+            } else if (difficulty === 'intermediate') {
+                bassNotes = ['c3', 'd3', 'e3', 'f3', 'g3'];
+            } else { // advanced
+                bassNotes = ['c3', 'd3', 'e3', 'f3', 'g3', 'a2', 'b2'];
+            }
+            
+            // Add extended range if selected
+            if (octaveRange === 'extended') {
+                // Extended treble range
+                if (difficulty === 'beginner') {
+                    trebleNotes = trebleNotes.concat(['c5']);
+                } else if (difficulty === 'intermediate') {
+                    trebleNotes = trebleNotes.concat(['c5', 'd5', 'b3']);
+                } else { // advanced
+                    trebleNotes = trebleNotes.concat(['c5', 'd5', 'e5', 'a3', 'b3']);
+                }
+                
+                // Extended bass range
+                if (difficulty === 'beginner') {
+                    bassNotes = bassNotes.concat(['c2']);
+                } else if (difficulty === 'intermediate') {
+                    bassNotes = bassNotes.concat(['c2', 'd2', 'b2']);
+                } else { // advanced
+                    bassNotes = bassNotes.concat(['c2', 'd2', 'e2', 'f2', 'g2']);
+                }
+            }
+            
+            // Return notes based on selected clef
+            if (clefType === 'treble') {
+                return trebleNotes;
+            } else if (clefType === 'bass') {
+                return bassNotes;
+            } else { // both clefs
+                return trebleNotes.concat(bassNotes);
+            }
+        }
+        
+        let previousNote = '';
+        
+        async function displayRandomNote() {
+            try {
+                // Clear any existing error messages
+                document.getElementById('feedback').textContent = '';
+                
+                // Select a random note from available notes (avoiding repeats)
+                const availableNotes = getAvailableNotes();
+                console.log("Available notes:", availableNotes);
+                
+                // If we only have one available note, just use it
+                if (availableNotes.length === 1) {
+                    currentNote = availableNotes[0];
+                } else {
+                    // Filter out the previous note to avoid repeats
+                    const filteredNotes = availableNotes.filter(note => note !== previousNote);
+                    const randomIndex = Math.floor(Math.random() * filteredNotes.length);
+                    currentNote = filteredNotes[randomIndex];
+                }
+                
+                // Log for confirmation
+                console.log("SELECTED FOR DISPLAY:", currentNote);
+                
+                // Store this note as the previous note for next time
+                previousNote = currentNote;
+                
+                // Get note definition
+                const note = noteDefinitions[currentNote];
+                console.log("Using note definition:", note);
+                
+                if (!note) {
+                    console.error("Note definition not found for", currentNote);
+                    document.getElementById('feedback').textContent = "Error: Note definition not found";
+                    document.getElementById('feedback').style.color = 'red';
+                    return;
+                }
+                
+                // CRITICAL - Make sure we render the correct note
+                const noteStep = note.step;  // e.g., "C", "D", etc.
+                const noteOctave = note.octave;  // e.g., 4, 5, etc.
+                const noteClef = note.clef;  // "treble" or "bass"
+                
+                // Create a debug message for the console
+                console.log(`
+                ==============================================
+                NOTE CURRENTLY DISPLAYED: ${noteStep}${noteOctave} (${noteClef} clef)
+                KEYPRESS TO ANSWER: ${noteStep.toLowerCase()}
+                ==============================================
+                `);
+                
+                // Update the scaling based on current screen size
+                const updateScaling = () => {
+                    const width = window.innerWidth;
+                    let scale;
+                    
+                    // Adjust scale based on viewport width
+                    if (width < 480) {
+                        scale = 0.8;  // Small mobile screens
+                    } else if (width < 768) {
+                        scale = 1.0;  // Larger mobile and small tablets
+                    } else if (width < 1024) {
+                        scale = 1.2;  // Tablets and small desktops
+                    } else {
+                        scale = 1.5;  // Large desktops
+                    }
+                    
+                    // Apply the updated scale
+                    if (osmd) {
+                        try {
+                            // Try to set the scale directly using the zoom property
+                            osmd.zoom = scale;
+                        } catch (err) {
+                            console.error("Could not set zoom directly, error:", err);
+                            // If setting zoom directly fails, we'll let the default scaling apply
+                        }
+                    }
+                };
+                
+                // Update scaling before rendering
+                updateScaling();
+                
+                // Get display settings
+                const showClef = document.getElementById('show-clef').checked;
+                const showClefName = document.getElementById('show-clef-name').checked;
+                
+                // Generate the MusicXML
+                const musicXML = generateMusicXML(noteStep, noteOctave, noteClef, showClef, showClefName);
+                
+                // Load and render the note
+                await osmd.load(musicXML);
+                await osmd.render();
+                
+                // Clear feedback
+                document.getElementById('feedback').textContent = '';
+                
+                // First, remove any existing debug or clef displays
+                const existingClefDisplay = document.getElementById('clef-name-display');
+                if (existingClefDisplay) {
+                    existingClefDisplay.remove();
+                }
+                
+                const existingDebugDisplay = document.getElementById('debug-note-display');
+                if (existingDebugDisplay) {
+                    existingDebugDisplay.remove();
+                }
+                
+                // Show clef information if needed
+                if (showClefName) {
+                    const clefNameDisplay = document.createElement('div');
+                    clefNameDisplay.style.position = 'absolute';
+                    clefNameDisplay.style.top = '10px';
+                    clefNameDisplay.style.left = '10px';
+                    clefNameDisplay.style.fontSize = '14px';
+                    clefNameDisplay.style.color = '#666';
+                    clefNameDisplay.textContent = note.clef === 'treble' ? 'Treble Clef (Right Hand)' : 'Bass Clef (Left Hand)';
+                    clefNameDisplay.id = 'clef-name-display';
+                    document.getElementById('osmd-container').appendChild(clefNameDisplay);
+                }
+                
+                // Show debug information if debug mode is enabled
+                const debugMode = document.getElementById('debug-mode').checked;
+                if (debugMode) {
+                    const debugDisplay = document.createElement('div');
+                    debugDisplay.style.position = 'absolute';
+                    debugDisplay.style.top = '50%';
+                    debugDisplay.style.left = '50%';
+                    debugDisplay.style.transform = 'translate(-50%, -50%)';
+                    debugDisplay.style.fontSize = '24px';
+                    debugDisplay.style.fontWeight = 'bold';
+                    debugDisplay.style.color = '#e74c3c';
+                    debugDisplay.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    debugDisplay.style.padding = '8px 15px';
+                    debugDisplay.style.borderRadius = '5px';
+                    debugDisplay.style.border = '2px solid #e74c3c';
+                    debugDisplay.style.zIndex = '1000';
+                    debugDisplay.textContent = `THIS IS ${noteStep} (${noteStep.toLowerCase()} key)`;
+                    debugDisplay.id = 'debug-note-display';
+                    document.getElementById('osmd-container').appendChild(debugDisplay);
+                }
+                
+                // Add event listener for debug mode toggle
+                document.getElementById('debug-mode').addEventListener('change', function() {
+                    const debugDisplay = document.getElementById('debug-note-display');
+                    if (this.checked) {
+                        if (!debugDisplay) {
+                            // Create debug display if it doesn't exist
+                            const newDebugDisplay = document.createElement('div');
+                            newDebugDisplay.style.position = 'absolute';
+                            newDebugDisplay.style.top = '50%';
+                            newDebugDisplay.style.left = '10px';
+                            newDebugDisplay.style.transform = 'translateY(-50%)';
+                            newDebugDisplay.style.fontSize = '16px';
+                            newDebugDisplay.style.fontWeight = 'bold';
+                            newDebugDisplay.style.color = '#e74c3c';
+                            newDebugDisplay.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                            newDebugDisplay.style.padding = '5px';
+                            newDebugDisplay.style.borderRadius = '3px';
+                            newDebugDisplay.textContent = `Note: ${noteStep} (${currentNote})`;
+                            newDebugDisplay.id = 'debug-note-display';
+                            document.getElementById('osmd-container').appendChild(newDebugDisplay);
+                        }
+                    } else {
+                        // Remove debug display if it exists
+                        if (debugDisplay) {
+                            debugDisplay.remove();
+                        }
+                    }
+                });
+            } catch (err) {
+                console.error("Error displaying note:", err);
+                document.getElementById('feedback').textContent = "Error displaying note";
+                document.getElementById('feedback').style.color = 'red';
+            }
+        }
+        
+        function generateMusicXML(step, octave, clef = 'treble', showClef = true, showClefName = true) {
+            // Determine clef sign and line
+            const clefSign = clef === 'treble' ? 'G' : 'F';
+            const clefLine = clef === 'treble' ? '2' : '4';
+            
+            // Create MusicXML for a single note
+            return `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.1">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Music</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key>
+          <fifths>0</fifths>
+        </key>
+        <time>
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+        ${showClef ? `<clef><sign>${clefSign}</sign><line>${clefLine}</line></clef>` : ''}
+      </attributes>
+      <note>
+        <pitch>
+          <step>${step}</step>
+          <octave>${octave}</octave>
+        </pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>`;
+        }
+        
+        function checkAnswer(answer) {
+            if (!currentNote || !gameRunning) return;
+            
+            console.log("Current note:", currentNote, "User answer:", answer);
+            
+            const feedback = document.getElementById('feedback');
+            const osmdContainer = document.getElementById('osmd-container');
+            
+            // Extract just the note letter (first character) from the current note ID
+            // currentNote now includes octave number (e.g., "c4", "d3")
+            const currentNoteLetter = currentNote.charAt(0);
+            
+            // For debugging
+            console.log(`Checking answer: user entered ${answer}, current note is ${currentNoteLetter} (from ${currentNote})`);
+            
+            if (answer === currentNoteLetter) {
+                // Correct answer
+                score++;
+                streak++;
+                document.getElementById('score').textContent = score;
+                
+                // Show clef, octave and note information in feedback
+                const noteInfo = noteDefinitions[currentNote];
+                const clefName = noteInfo.clef === 'treble' ? 'Treble' : 'Bass';
+                const octaveDisplay = noteInfo.octave;
+                
+                feedback.textContent = streak > 1 ? 
+                    `Correct! ${streak} note streak! (${noteInfo.step}${octaveDisplay}, ${clefName} Clef)` : 
+                    `Correct! (${noteInfo.step}${octaveDisplay}, ${clefName} Clef)`;
+                feedback.style.color = '#27ae60';
+                
+                osmdContainer.classList.add('correct-answer');
+                setTimeout(() => {
+                    osmdContainer.classList.remove('correct-answer');
+                }, 600);
+            } else {
+                // Wrong answer
+                streak = 0;
+                
+                // Show clef, octave and note information in feedback
+                const noteInfo = noteDefinitions[currentNote];
+                const clefName = noteInfo.clef === 'treble' ? 'Treble' : 'Bass';
+                const octaveDisplay = noteInfo.octave;
+                
+                feedback.textContent = `Wrong! That was ${noteInfo.step} (${noteInfo.step}${octaveDisplay}, ${clefName} Clef)`;
+                feedback.style.color = '#e74c3c';
+                
+                osmdContainer.classList.add('wrong-answer');
+                setTimeout(() => {
+                    osmdContainer.classList.remove('wrong-answer');
+                }, 500);
+            }
+            
+            // Show the next note after a delay
+            setTimeout(() => {
+                displayRandomNote();
+            }, 1000);
+        }
+        
+        function startTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            
+            timer = 0;
+            document.getElementById('timer').textContent = timer;
+            
+            timerInterval = setInterval(() => {
+                timer++;
+                document.getElementById('timer').textContent = timer;
+            }, 1000);
+        }
+        
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+        
+        function startGame() {
+            // Reset game state
+            score = 0;
+            streak = 0;
+            previousNote = ''; // Reset previous note to allow any note to start
+            gameRunning = true;
+            document.getElementById('score').textContent = score;
+            
+            // Start the timer
+            startTimer();
+            
+            // Display the first note
+            displayRandomNote();
+        }
+        
+        function toggleHelp() {
+            helpVisible = !helpVisible;
+            
+            if (helpVisible) {
+                const helpContent = document.createElement('div');
+                helpContent.id = 'help-panel';
+                helpContent.style.position = 'fixed';
+                helpContent.style.top = '50%';
+                helpContent.style.left = '50%';
+                helpContent.style.transform = 'translate(-50%, -50%)';
+                helpContent.style.backgroundColor = 'white';
+                helpContent.style.padding = '20px';
+                helpContent.style.borderRadius = '10px';
+                helpContent.style.boxShadow = '0 0 20px rgba(0,0,0,0.3)';
+                helpContent.style.maxWidth = '500px';
+                helpContent.style.width = '90%';
+                helpContent.style.zIndex = '1000';
+                
+                helpContent.innerHTML = `
+                    <h2>How to Play</h2>
+                    <p>This game helps you practice identifying musical notes on a staff.</p>
+                    <ul>
+                        <li>A random note will appear on the staff</li>
+                        <li>Click the button showing the correct note name</li>
+                        <li>You can also press the corresponding keyboard key (C, D, E, etc.)</li>
+                        <li>Choose your difficulty level:
+                            <ul>
+                                <li>Beginner: C, D, E only</li>
+                                <li>Intermediate: C through G</li>
+                                <li>Advanced: All notes</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Clef Options:</h3>
+                    <ul>
+                        <li>Treble Clef (Right Hand): Higher pitch notes, typically played with the right hand</li>
+                        <li>Bass Clef (Left Hand): Lower pitch notes, typically played with the left hand</li>
+                        <li>Both Clefs: Randomly mixed treble and bass clef notes for a greater challenge</li>
+                    </ul>
+                    
+                    <h3>Other Settings:</h3>
+                    <ul>
+                        <li>Show Clef Symbol: Toggle clef display to test note recognition without clef visual cues</li>
+                        <li>Show Clef Name: Display the current clef name (treble or bass) in the corner</li>
+                        <li>Extended Range: Adds notes above and below the standard range</li>
+                    </ul>
+                    
+                    <h3>Note Reading:</h3>
+                    <p>When playing, you only need to identify the note letter (C, D, E, etc.), not the octave.</p>
+                    <p>The game will tell you the full note (including octave and clef) after each answer.</p>
+                    <p>Octave numbering: Middle C is C4, the octave above is C5, and octaves below are C3, C2, etc.</p>
+                    <button id="close-help" style="margin-top: 20px; padding: 10px 15px;">Close Help</button>
+                `;
+                
+                document.body.appendChild(helpContent);
+                
+                document.getElementById('close-help').addEventListener('click', toggleHelp);
+            } else {
+                const helpPanel = document.getElementById('help-panel');
+                if (helpPanel) {
+                    helpPanel.remove();
+                }
+            }
+        }
+        
+        // Add keyboard shortcuts
+        function handleKeyPress(e) {
+            if (!gameRunning) return;
+            
+            const key = e.key.toLowerCase();
+            
+            // Only need the note letter, not the octave, for checking answers
+            switch(key) {
+                case 'c':
+                    checkAnswer('c');
+                    break;
+                case 'd':
+                    checkAnswer('d');
+                    break;
+                case 'e':
+                    checkAnswer('e');
+                    break;
+                case 'f':
+                    checkAnswer('f');
+                    break;
+                case 'g':
+                    checkAnswer('g');
+                    break;
+                case 'a':
+                    checkAnswer('a');
+                    break;
+                case 'b':
+                    checkAnswer('b');
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
