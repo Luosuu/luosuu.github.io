@@ -5,7 +5,7 @@ main:
     conference_short: MLSys
     conference: Eighth Conference on Machine Learning and Systems (MLSys), 2025
     # code: https://github.com/MrGiovanni/ContinualLearning
-    # bibtex: https://bib.yliu.me/MICCAI23.txt
+    bibtex: ./assets/files/youmu.bib
     pdf: https://mlsys.org/virtual/2025/poster/3272
     image: ./assets/img/Youmu_design.png
     slides: ./assets/files/Youmu_slides.pdf
