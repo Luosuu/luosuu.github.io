@@ -7,61 +7,89 @@
     <script src="./assets/js/lib/opensheetmusicdisplay.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
+            min-height: 100vh;
+            margin: 0;
         }
         h1 {
-            color: #2c3e50;
+            color: #ffffff;
             margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 2px;
         }
         .game-container {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 25px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.1);
+            padding: 30px;
             width: 95%;
             max-width: 800px;
             margin: 0 auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         @media (max-width: 768px) {
             .game-container {
-                padding: 15px;
+                padding: 20px;
+                margin: 10px;
+                width: calc(100% - 20px);
             }
             
             h1 {
-                font-size: 24px;
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+            
+            body {
+                padding: 10px;
             }
         }
         
         @media (max-width: 480px) {
             .game-container {
-                padding: 10px;
-                width: 98%;
+                padding: 15px;
+                width: calc(100% - 20px);
+                margin: 5px;
             }
             
             h1 {
-                font-size: 22px;
+                font-size: 1.8em;
                 margin-bottom: 15px;
+                letter-spacing: 1px;
+            }
+            
+            body {
+                padding: 5px;
             }
         }
         #osmd-container {
-            width: 100%;
+            width: calc(100% - 0px);
             height: 300px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 10px;
+            margin: 20px 0;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 15px;
             overflow: hidden;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.05);
+            border: 2px solid rgba(255,255,255,0.3);
+            box-sizing: border-box;
         }
         
         @media (max-width: 768px) {
@@ -79,46 +107,60 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
-            margin-top: 30px;
-            max-width: 700px;
+            gap: 8px;
+            margin: 30px 0;
+            max-width: 900px;
             width: 100%;
+            box-sizing: border-box;
         }
         button {
-            padding: 12px 20px;
-            font-size: 18px;
+            padding: 12px 16px;
+            font-size: 16px;
             cursor: pointer;
-            border: 2px solid #3498db;
-            background-color: white;
-            color: #3498db;
-            border-radius: 5px;
-            transition: all 0.2s;
+            border: none;
+            background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            min-width: fit-content;
         }
         button:hover {
-            background-color: #3498db;
-            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(145deg, #764ba2 0%, #667eea 100%);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
         }
         
         @media (max-width: 768px) {
             .buttons {
-                gap: 8px;
+                gap: 6px;
                 margin-top: 20px;
+                max-width: 100%;
             }
             button {
-                padding: 10px 16px;
-                font-size: 16px;
+                padding: 10px 12px;
+                font-size: 14px;
             }
         }
         
         @media (max-width: 480px) {
             .buttons {
-                gap: 6px;
+                gap: 4px;
                 margin-top: 15px;
+                max-width: 100%;
             }
             button {
-                padding: 8px 12px;
-                font-size: 15px;
-                min-width: 60px;
+                padding: 8px 10px;
+                font-size: 13px;
+                min-width: fit-content;
             }
         }
         .stats-container {
@@ -126,52 +168,71 @@
             justify-content: space-between;
             width: 100%;
             margin: 20px 0;
+            box-sizing: border-box;
         }
         .score, .timer {
             margin-top: 20px;
             font-size: 22px;
-            font-weight: bold;
-            color: #2c3e50;
-            padding: 10px 15px;
-            background-color: #f1f1f1;
-            border-radius: 5px;
+            font-weight: 600;
+            color: #4a5568;
+            padding: 12px 18px;
+            background: linear-gradient(145deg, #e2e8f0 0%, #f7fafc 100%);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.5);
         }
         .feedback {
             margin: 20px 0;
             font-size: 20px;
             min-height: 30px;
             text-align: center;
-            font-weight: bold;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         .controls {
-            margin-top: 30px;
+            margin: 30px 0 0 0;
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            width: 100%;
+            box-sizing: border-box;
         }
         .game-button {
-            padding: 15px 25px;
+            padding: 15px 30px;
             font-size: 18px;
-            background-color: #4CAF50;
+            background: linear-gradient(145deg, #48bb78 0%, #38a169 100%);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            letter-spacing: 0.5px;
         }
         .game-button:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: linear-gradient(145deg, #38a169 0%, #2f855a 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+        }
+        .game-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
         }
         .settings {
-            margin-top: 25px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            width: 100%;
+            margin: 25px 0;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(248,249,250,0.1) 100%);
+            backdrop-filter: blur(10px);
+            width: calc(100% - 0px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
         }
         .difficulty {
             display: flex;
@@ -229,6 +290,22 @@
         input[type="checkbox"] {
             width: 18px;
             height: 18px;
+            accent-color: #667eea;
+        }
+        select {
+            padding: 8px 12px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(248,249,250,0.9) 100%);
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+            transition: all 0.2s ease;
+        }
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         .streak {
             color: #e67e22;
@@ -295,7 +372,7 @@
                     <select id="difficulty-level" onchange="startGame()">
                         <option value="beginner">Beginner (C, D, E only)</option>
                         <option value="intermediate">Intermediate (C through G)</option>
-                        <option value="advanced">Advanced (All notes)</option>
+                        <option value="advanced" selected>Advanced (All notes)</option>
                     </select>
                 </label>
             </div>
@@ -306,7 +383,7 @@
                     <select id="clef-type" onchange="startGame()">
                         <option value="treble">Treble Clef (Right Hand)</option>
                         <option value="bass">Bass Clef (Left Hand)</option>
-                        <option value="both">Both Clefs (Random)</option>
+                        <option value="both" selected>Both Clefs (Random)</option>
                     </select>
                 </label>
                 
@@ -325,7 +402,7 @@
                     <select id="notation-type" onchange="updateNotationButtons()">
                         <option value="letter">Letter Names (C, D, E...)</option>
                         <option value="solfege">Solfège (Do, Re, Mi...)</option>
-                        <option value="both">Both Notations</option>
+                        <option value="both" selected>Both Notations</option>
                     </select>
                 </label>
             </div>
@@ -898,8 +975,8 @@
                 const octaveDisplay = noteInfo.octave;
                 
                 feedback.textContent = streak > 1 ? 
-                    `Correct! ${streak} note streak! (${noteInfo.step} "${noteInfo.solfege}", ${clefName} Clef)` : 
-                    `Correct! (${noteInfo.step} "${noteInfo.solfege}", ${clefName} Clef)`;
+                    `Correct! ${streak} note streak! (${noteInfo.step}${octaveDisplay} "${noteInfo.solfege}", ${clefName} Clef)` : 
+                    `Correct! (${noteInfo.step}${octaveDisplay} "${noteInfo.solfege}", ${clefName} Clef)`;
                 feedback.style.color = '#27ae60';
                 
                 osmdContainer.classList.add('correct-answer');
@@ -915,7 +992,7 @@
                 const clefName = noteInfo.clef === 'treble' ? 'Treble' : 'Bass';
                 const octaveDisplay = noteInfo.octave;
                 
-                feedback.textContent = `Wrong! That was ${noteInfo.step} "${noteInfo.solfege}" (${clefName} Clef)`;
+                feedback.textContent = `Wrong! That was ${noteInfo.step}${octaveDisplay} "${noteInfo.solfege}" (${clefName} Clef)`;
                 feedback.style.color = '#e74c3c';
                 
                 osmdContainer.classList.add('wrong-answer');
@@ -970,63 +1047,52 @@
             helpVisible = !helpVisible;
             
             if (helpVisible) {
+                // Create backdrop
+                const backdrop = document.createElement('div');
+                backdrop.style.position = 'fixed';
+                backdrop.style.top = '0';
+                backdrop.style.left = '0';
+                backdrop.style.width = '100%';
+                backdrop.style.height = '100%';
+                backdrop.style.backgroundColor = 'rgba(0,0,0,0.4)';
+                backdrop.style.backdropFilter = 'blur(5px)';
+                backdrop.style.zIndex = '999';
+                backdrop.onclick = toggleHelp;
+                document.body.appendChild(backdrop);
+                
                 const helpContent = document.createElement('div');
                 helpContent.id = 'help-panel';
                 helpContent.style.position = 'fixed';
                 helpContent.style.top = '50%';
                 helpContent.style.left = '50%';
                 helpContent.style.transform = 'translate(-50%, -50%)';
-                helpContent.style.backgroundColor = 'white';
-                helpContent.style.padding = '20px';
-                helpContent.style.borderRadius = '10px';
-                helpContent.style.boxShadow = '0 0 20px rgba(0,0,0,0.3)';
+                helpContent.style.background = 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)';
+                helpContent.style.padding = '30px';
+                helpContent.style.borderRadius = '20px';
+                helpContent.style.boxShadow = '0 25px 50px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)';
                 helpContent.style.maxWidth = '500px';
                 helpContent.style.width = '90%';
                 helpContent.style.zIndex = '1000';
+                helpContent.style.backdropFilter = 'blur(20px)';
+                helpContent.style.border = '1px solid rgba(255,255,255,0.2)';
                 
                 helpContent.innerHTML = `
                     <h2>How to Play</h2>
-                    <p>This game helps you practice identifying musical notes on a staff.</p>
+                    <p><strong>Goal:</strong> Identify notes on the staff. Click the button or press the corresponding key (C, D, E, etc.).</p>
+                    
+                    <p><strong>Difficulty:</strong> Beginner (C,D,E) → Intermediate (C-G) → Advanced (All notes)</p>
+                    
+                    <p><strong>Settings:</strong></p>
                     <ul>
-                        <li>A random note will appear on the staff</li>
-                        <li>Click the button showing the correct note name</li>
-                        <li>You can also press the corresponding keyboard key (C, D, E, etc.)</li>
-                        <li>Choose your difficulty level:
-                            <ul>
-                                <li>Beginner: C, D, E only</li>
-                                <li>Intermediate: C through G</li>
-                                <li>Advanced: All notes</li>
-                            </ul>
-                        </li>
+                        <li><strong>Notation:</strong> Letter names (C,D,E...) or Solfège (Do,Re,Mi...)</li>
+                        <li><strong>Clef:</strong> Treble (right hand), Bass (left hand), or Both</li>
+                        <li><strong>Range:</strong> Standard or Extended for more challenge</li>
+                        <li><strong>Debug Mode:</strong> Shows answers for practice</li>
                     </ul>
                     
-                    <h3>Notation Options:</h3>
-                    <ul>
-                        <li>Letter Names: Use traditional letter names (C, D, E, F, G, A, B)</li>
-                        <li>Solfège: Use solfège syllables (Do, Re, Mi, Fa, Sol, La, Ti)</li>
-                        <li>Both: Display both notations together</li>
-                    </ul>
+                    <p><em>Note: You only need to identify the letter name, not the octave. The game shows full details after each answer.</em></p>
                     
-                    <h3>Clef Options:</h3>
-                    <ul>
-                        <li>Treble Clef (Right Hand): Higher pitch notes, typically played with the right hand</li>
-                        <li>Bass Clef (Left Hand): Lower pitch notes, typically played with the left hand</li>
-                        <li>Both Clefs: Randomly mixed treble and bass clef notes for a greater challenge</li>
-                    </ul>
-                    
-                    <h3>Other Settings:</h3>
-                    <ul>
-                        <li>Show Clef Symbol: Toggle clef display to test note recognition without clef visual cues</li>
-                        <li>Show Clef Name: Display the current clef name (treble or bass) in the corner</li>
-                        <li>Extended Range: Adds notes above and below the standard range</li>
-                        <li>Debug Mode: Shows the current note directly on screen</li>
-                    </ul>
-                    
-                    <h3>Note Reading:</h3>
-                    <p>When playing, you only need to identify the note letter (C/Do, D/Re, etc.), not the octave.</p>
-                    <p>The game will tell you the full note (including letter name, solfège, octave and clef) after each answer.</p>
-                    <p>Octave numbering: Middle C is C4, the octave above is C5, and octaves below are C3, C2, etc.</p>
-                    <button id="close-help" style="margin-top: 20px; padding: 10px 15px;">Close Help</button>
+                    <button id="close-help" style="margin-top: 15px; padding: 10px 15px;">Close Help</button>
                 `;
                 
                 document.body.appendChild(helpContent);
@@ -1034,8 +1100,12 @@
                 document.getElementById('close-help').addEventListener('click', toggleHelp);
             } else {
                 const helpPanel = document.getElementById('help-panel');
+                const backdrop = document.querySelector('div[style*="backdrop-filter: blur(5px)"]');
                 if (helpPanel) {
                     helpPanel.remove();
+                }
+                if (backdrop) {
+                    backdrop.remove();
                 }
             }
         }
