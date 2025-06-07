@@ -9,6 +9,7 @@ main:
     pdf: https://mlsys.org/virtual/2025/poster/3272
     image: ./assets/img/Youmu_design.png
     slides: ./assets/files/Youmu_slides.pdf
+    poster: ./assets/files/MLSys_Youmu_Poster.pdf
     # notes: Oral Presentation
 
   - title: "Reimu: Optimizing Data I/O for LLM Datasets on Remote Storage"
