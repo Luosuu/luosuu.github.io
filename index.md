@@ -4,11 +4,11 @@ layout: homepage
 
 ## About Me
 
-Greetings! I am a third-year Ph.D. student in Computer Science advised by [Prof. Geoffrey Fox](https://engineering.virginia.edu/faculty/geoffrey-c-fox). I also work closely with [Prof. Keren Zhou](https://www.jokeren.tech/).
+Greetings! I am a fourth-year Ph.D. student in Computer Science advised by [Prof. Geoffrey Fox](https://engineering.virginia.edu/faculty/geoffrey-c-fox). I also work closely with [Prof. Keren Zhou](https://www.jokeren.tech/).
 
 Before UVA, I received my B.Eng in CS and B.Sc in Applied Mathematics at [University of Electronic Science and Technology of China](https://en.uestc.edu.cn/) in 2022.
 
-I was a Research Intern at [Systems & Networking Research Group, Microsoft Research Asia](https://www.microsoft.com/en-us/research/group/systems-and-networking-research-group-asia/).
+Currently, I am a research scientist intern at ByteDance, developing [efficient & easy-to-use MoE training system at scale](https://github.com/ByteDance-Seed/VeOmni/blob/main/docs/tutorials/ep_fsdp2.md). I also interned at [Systems & Networking Research Group, Microsoft Research Asia](https://www.microsoft.com/en-us/research/group/systems-and-networking-research-group-asia/) during my undergrad.
 
 I also did an exchange-study in Japan for one year during my undergrad at [The University of Electro-Communications, Tokyo](https://www.uec.ac.jp/eng/) where I was supervised by [Prof. Yoichi Haneda](https://www.uec.ac.jp/eng/research/introduction/opal-ring/0006341.html) at [UEC Sound Media Lab](http://www.hanedalab.inf.uec.ac.jp/).
 
