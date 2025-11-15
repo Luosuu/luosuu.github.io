@@ -1,4 +1,15 @@
 main:
+  - title: "Proton: Towards Multi-level, Adaptive Profiling for Triton"
+    authors: Keren Zhou, <strong>Tianle Zhong</strong>, Hao Wu, Jihyeong Lee, Yue Guan, Yufei Ding, Corbin Robeck, Jeff Niu, Phil Tillet
+    conference_short: CGO
+    conference: Code Generation and Optimization (CGO), 2026
+    code: https://github.com/Deep-Learning-Profiling-Tools/CGO-26-AE
+    # bibtex: ./assets/files/youmu.bib
+    # pdf: https://mlsys.org/virtual/2025/poster/3272
+    image: ./assets/img/proton_attribution.png
+    # slides: ./assets/files/Youmu_slides.pdf
+    # poster: ./assets/files/MLSys_Youmu_Poster.pdf
+    # notes: Oral Presentation
 
   - title: "Youmu: Efficient Columnar Data Pipeline for LLM Training"
     authors: <strong>Tianle Zhong</strong>, Jiechen Zhao, Qiang Su, Geoffrey Fox
