@@ -20,7 +20,7 @@ I also did an exchange-study in Japan for one year during my undergrad at [The U
 ## News
 
 - **[Nov 2025]** Proton is accepted at CGO'26.
-- **[Oct 2025]** We won the first place in [GPU MODE Hackathon](https://www.linkedin.com/posts/tianle-zhong-luosuu_excited-to-share-the-news-that-our-team-activity-7391882457697947649-ZAtO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2mh8ABST7d-xudjwyvwhf0HhGmJs68dPQ) and awarded $10,000 GPU credits from Nebius!
+- **[Oct 2025]** Won the 1st place in [GPU MODE Hackathon](https://www.linkedin.com/posts/tianle-zhong-luosuu_excited-to-share-the-news-that-our-team-activity-7391882457697947649-ZAtO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2mh8ABST7d-xudjwyvwhf0HhGmJs68dPQ) with $10,000 Nebius GPU credits!
 - **[May 2025]** I have been selected for MLSys Student Travel Grant. Thank you MLSys committee!
 - **[May 2025]** I will present [Youmu](https://mlsys.org/virtual/2025/poster/3272) at MLSys 2025 in Santa Clara!
 - **[Apr. 2024]** I will present [Reimu](./assets/files/AIOps_24.pdf) at AIOps workshop of ASPLOS 2024 in San Diego!
