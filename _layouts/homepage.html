@@ -102,6 +102,9 @@
       {% if site.enable_footnote %}
       <p><small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small></p>
       {% endif %}
+      {% if site.ga_worker_url %}
+      <p><small>You are the <span id="ga-total-users">…</span> visitor (since 2020).</small></p>
+      {% endif %}
 
       </section>
       <footer>
@@ -109,6 +112,26 @@
       </footer>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+    {% if site.ga_worker_url %}
+    <script>
+      // Fetches GA4 totals from the Cloudflare Worker if configured.
+      (function() {
+        var el = document.getElementById('ga-total-users');
+        if (!el) return;
+        function ordinal(n) {
+          var s = ["th", "st", "nd", "rd"], v = n % 100;
+          return n + (s[(v - 20) % 10] || s[v] || s[0]);
+        }
+        fetch('{{ site.ga_worker_url }}')
+          .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+          .then(function(d) {
+            var num = parseInt(d.totalUsers, 10);
+            el.textContent = Number.isFinite(num) ? ordinal(num) : '—';
+          })
+          .catch(function() { el.textContent = '—'; });
+      })();
+    </script>
+    {% endif %}
     {% if site.google_analytics %}
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
     <script>
