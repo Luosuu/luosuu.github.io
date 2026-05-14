@@ -88,8 +88,7 @@ async function runReport({ token, propertyId }) {
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      // Use a long range to approximate lifetime visitors.
-      dateRanges: [{ startDate: '2020-01-01', endDate: 'today' }],
+      dateRanges: [{ startDate: '2022-10-13', endDate: 'today' }],
       metrics: [{ name: 'totalUsers' }],
     }),
   });
@@ -100,6 +99,30 @@ async function runReport({ token, propertyId }) {
   const json = await res.json();
   const totalUsers = json.rows?.[0]?.metricValues?.[0]?.value ?? null;
   return { totalUsers };
+}
+
+async function runEarliestDateReport({ token, propertyId }) {
+  const res = await fetch(`https://analyticsdata.googleapis.com/v1beta/${propertyId}:runReport`, {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${token}`,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      dateRanges: [{ startDate: '2022-10-13', endDate: 'today' }],
+      dimensions: [{ name: 'date' }],
+      metrics: [{ name: 'totalUsers' }],
+      orderBys: [{ dimension: { dimensionName: 'date' }, desc: false }],
+      limit: 1,
+    }),
+  });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`earliest date report failed: ${res.status} - ${body}`);
+  }
+  const json = await res.json();
+  const earliestDate = json.rows?.[0]?.dimensionValues?.[0]?.value ?? null;
+  return earliestDate;
 }
 
 function corsHeaders() {
@@ -131,6 +154,18 @@ export default {
         : `properties/${env.GA_PROPERTY_ID}`;
 
       const token = await fetchAccessToken(serviceAccount);
+      const url = new URL(request.url);
+
+      if (url.searchParams.has('debug')) {
+        const [report, earliestDate] = await Promise.all([
+          runReport({ token, propertyId }),
+          runEarliestDateReport({ token, propertyId }),
+        ]);
+        return new Response(JSON.stringify({ ...report, earliestDate }), {
+          headers: { 'content-type': 'application/json', ...corsHeaders() },
+        });
+      }
+
       const report = await runReport({ token, propertyId });
 
       return new Response(JSON.stringify(report), {
