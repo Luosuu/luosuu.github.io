@@ -4,8 +4,8 @@ main:
     conference_short: CGO
     conference: Code Generation and Optimization (CGO), 2026
     code: https://github.com/Deep-Learning-Profiling-Tools/CGO-26-AE
-    # bibtex: ./assets/files/youmu.bib
-    # pdf: https://mlsys.org/virtual/2025/poster/3272
+    bibtex: ./assets/files/proton.bib
+    pdf: https://2026.cgo.org/details/cgo-2026-papers/23/Proton-Towards-Multi-level-Adaptive-Profiling-for-Triton
     image: ./assets/img/proton_attribution.png
     # slides: ./assets/files/Youmu_slides.pdf
     # poster: ./assets/files/MLSys_Youmu_Poster.pdf
