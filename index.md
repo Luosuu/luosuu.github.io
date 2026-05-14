@@ -8,7 +8,7 @@ Greetings! I am a fourth-year Ph.D. student in Computer Science advised by [Prof
 
 Before UVA, I received my B.Eng in CS and B.Sc in Applied Mathematics at [University of Electronic Science and Technology of China](https://en.uestc.edu.cn/) in 2022.
 
-Currently, I am a research scientist intern at ByteDance, developing [efficient & easy-to-use MoE training system at scale](https://veomni.readthedocs.io/en/latest/key_features/ep_fsdp2.html). I also interned at [Systems & Networking Research Group, Microsoft Research Asia](https://www.microsoft.com/en-us/research/group/systems-and-networking-research-group-asia/) during my undergrad.
+Currently, I am a research scientist intern at ByteDance, developing [VeOmni](https://veomni.readthedocs.io/en/latest/key_features/ep_fsdp2.html)/[VeXact](https://github.com/verl-project/vexact)/[VeRL](https://github.com/verl-project/verl) for scalable multimodal MoE pre-training/RL system. I also interned at [Systems & Networking Research Group, Microsoft Research Asia](https://www.microsoft.com/en-us/research/group/systems-and-networking-research-group-asia/) during my undergrad.
 
 I also did an exchange-study in Japan for one year during my undergrad at [The University of Electro-Communications, Tokyo](https://www.uec.ac.jp/eng/) where I was supervised by [Prof. Yoichi Haneda](https://www.uec.ac.jp/eng/research/introduction/opal-ring/0006341.html) at [UEC Sound Media Lab](http://www.hanedalab.inf.uec.ac.jp/).
 
@@ -19,6 +19,7 @@ I also did an exchange-study in Japan for one year during my undergrad at [The U
 
 ## News
 
+- **[May. 2026]** [VeXact](https://github.com/verl-project/vexact) is open source.
 - **[Nov. 2025]** Proton is accepted at CGO'26.
 - **[Oct. 2025]** Won the 1st place in [GPU MODE Hackathon](https://www.linkedin.com/posts/tianle-zhong-luosuu_excited-to-share-the-news-that-our-team-activity-7391882457697947649-ZAtO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2mh8ABST7d-xudjwyvwhf0HhGmJs68dPQ) with $10,000 Nebius GPU credits!
 - **[May 2025]** I have been selected for MLSys Student Travel Grant. Thank you MLSys committee!
