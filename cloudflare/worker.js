@@ -89,7 +89,7 @@ async function runReport({ token, propertyId }) {
     },
     body: JSON.stringify({
       dateRanges: [{ startDate: '2022-10-13', endDate: 'today' }],
-      metrics: [{ name: 'totalUsers' }],
+      metrics: [{ name: 'totalUsers' }, { name: 'screenPageViews' }],
     }),
   });
   if (!res.ok) {
@@ -97,8 +97,10 @@ async function runReport({ token, propertyId }) {
     throw new Error(`report request failed: ${res.status} - ${body}`);
   }
   const json = await res.json();
-  const totalUsers = json.rows?.[0]?.metricValues?.[0]?.value ?? null;
-  return { totalUsers };
+  const metricValues = json.rows?.[0]?.metricValues ?? [];
+  const totalUsers = metricValues[0]?.value ?? null;
+  const screenPageViews = metricValues[1]?.value ?? null;
+  return { totalUsers, screenPageViews };
 }
 
 async function runEarliestDateReport({ token, propertyId }) {

@@ -103,7 +103,7 @@
       <p><small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small></p>
       {% endif %}
       {% if site.ga_worker_url %}
-      <p><small>You are the <span id="ga-total-users">…</span> visitor (since 2022).</small></p>
+      <p><small><span id="ga-total-users">…</span> visitors and <span id="ga-page-views">…</span> page views since Oct. 2022.</small></p>
       {% endif %}
 
       </section>
@@ -116,19 +116,22 @@
     <script>
       // Fetches GA4 totals from the Cloudflare Worker if configured.
       (function() {
-        var el = document.getElementById('ga-total-users');
-        if (!el) return;
-        function ordinal(n) {
-          var s = ["th", "st", "nd", "rd"], v = n % 100;
-          return n + (s[(v - 20) % 10] || s[v] || s[0]);
+        var usersEl = document.getElementById('ga-total-users');
+        var viewsEl = document.getElementById('ga-page-views');
+        if (!usersEl || !viewsEl) return;
+        function formatNumber(n) {
+          return Number.isFinite(n) ? n.toLocaleString() : '—';
         }
         fetch('{{ site.ga_worker_url }}')
           .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
           .then(function(d) {
-            var num = parseInt(d.totalUsers, 10);
-            el.textContent = Number.isFinite(num) ? ordinal(num) : '—';
+            usersEl.textContent = formatNumber(parseInt(d.totalUsers, 10));
+            viewsEl.textContent = formatNumber(parseInt(d.screenPageViews, 10));
           })
-          .catch(function() { el.textContent = '—'; });
+          .catch(function() {
+            usersEl.textContent = '—';
+            viewsEl.textContent = '—';
+          });
       })();
     </script>
     {% endif %}
