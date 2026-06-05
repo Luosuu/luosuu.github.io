@@ -8,8 +8,9 @@ Greetings! I am a fourth-year Ph.D. student in Computer Science advised by [Prof
 
 Before joining UVA, I received my B.Eng. in Computer Science and B.Sc. in Applied Mathematics from the [University of Electronic Science and Technology of China](https://en.uestc.edu.cn/) in 2022.
 
-I am currently a Research Scientist Intern at ByteDance Seed LLM Infra, where I work on open-source systems including [VeOmni](https://veomni.readthedocs.io/en/latest/key_features/ep_fsdp2.html), [VeXact](https://github.com/verl-project/vexact), and [VeRL](https://github.com/verl-project/verl), as well as internal infrastructure for scalable multimodal MoE pre-training and RL. I also contribute to FlashAttention and Triton. During my undergraduate studies, I interned at the [Systems & Networking Research Group, Microsoft Research Asia](https://www.microsoft.com/en-us/research/group/systems-and-networking-research-group-asia/).
+I am currently a Research Scientist Intern at ByteDance Seed LLM Infra, where I work on open-source systems including [VeOmni](https://veomni.readthedocs.io/en/latest/key_features/ep_fsdp2.html), [VeXact](https://github.com/verl-project/vexact), and [VeRL](https://github.com/verl-project/verl), as well as internal infrastructure for scalable multimodal MoE pre-training and RL. I also contribute to FlashAttention and Triton. 
 
+During my undergraduate studies, I interned at the [Systems & Networking Research Group, Microsoft Research Asia](https://www.microsoft.com/en-us/research/group/systems-and-networking-research-group-asia/).
 I also spent one year in Japan as an exchange student at [The University of Electro-Communications, Tokyo](https://www.uec.ac.jp/eng/), where I was supervised by [Prof. Yoichi Haneda](https://www.uec.ac.jp/eng/research/introduction/opal-ring/0006341.html) at [UEC Sound Media Lab](http://www.hanedalab.inf.uec.ac.jp/).
 
 ## Research Interests
