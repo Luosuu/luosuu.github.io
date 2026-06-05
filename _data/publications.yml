@@ -1,4 +1,13 @@
 main:
+  - title: "Diagnosing Training Inference Mismatch in LLM Reinforcement Learning"
+    authors: <strong>Tianle Zhong</strong>, Neiwen Ling, Yifan Pi, Zijun Wei, Tianshu Yu, Geoffrey Fox, Peng Wu, Xiao Yu
+    conference_short: arXiv
+    conference: arXiv preprint arXiv:2605.14220, 2026
+    pdf: https://arxiv.org/abs/2605.14220
+    code: https://github.com/verl-project/vexact
+    bibtex: ./assets/files/diagnosing_training_inference_mismatch.bib
+    image: ./assets/img/train_reward.png
+
   - title: "Proton: Towards Multi-level, Adaptive Profiling for Triton"
     authors: Keren Zhou, <strong>Tianle Zhong</strong>, Hao Wu, Jihyeong Lee, Yue Guan, Yufei Ding, Corbin Robeck, Jeff Niu, Phil Tillet
     conference_short: CGO
