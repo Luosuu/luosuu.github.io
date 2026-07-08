@@ -20,6 +20,7 @@ I also spent one year in Japan as an exchange student at [The University of Elec
 
 ## News
 
+- **[July. 2026]** LLMProf is accepted at SC'26.
 - **[May. 2026]** [VeXact](https://github.com/verl-project/vexact) is open source.
 - **[Nov. 2025]** Proton is accepted at CGO'26.
 - **[Oct. 2025]** Won the 1st place in [GPU MODE Hackathon](https://www.linkedin.com/posts/tianle-zhong-luosuu_excited-to-share-the-news-that-our-team-activity-7391882457697947649-ZAtO?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2mh8ABST7d-xudjwyvwhf0HhGmJs68dPQ) with $10,000 Nebius GPU credits!
