@@ -4,7 +4,7 @@ layout: homepage
 
 ## About Me
 
-Greetings! I am a fourth-year Ph.D. student in Computer Science advised by [Prof. Geoffrey Fox](https://engineering.virginia.edu/faculty/geoffrey-c-fox). I also work closely with [Prof. Keren Zhou](https://www.jokeren.tech/).
+Greetings! I am a final-year Ph.D. candidate in Computer Science advised by [Prof. Geoffrey Fox](https://engineering.virginia.edu/faculty/geoffrey-c-fox). I also work closely with [Prof. Keren Zhou](https://www.jokeren.tech/).
 
 Before joining UVA, I received my B.Eng. in Computer Science and B.Sc. in Applied Mathematics from the [University of Electronic Science and Technology of China](https://en.uestc.edu.cn/) in 2022.
 
@@ -20,6 +20,7 @@ I also spent one year in Japan as an exchange student at [The University of Elec
 
 ## News
 
+- **[Oct. 2026]** I presented [VeXact](https://github.com/verl-project/vexact) in the talk "[When Rollout and Training Disagree: Lessons from Building a Mismatch-Free RL Engine](https://events.linuxfoundation.org/pytorch-conference-north-america/program/schedule/?id=1257767)" at PyTorch Conference North America 2026 in San Jose!
 - **[July. 2026]** LLMProf is accepted at SC'26.
 - **[May. 2026]** [VeXact](https://github.com/verl-project/vexact) is open source.
 - **[Nov. 2025]** Proton is accepted at CGO'26.
