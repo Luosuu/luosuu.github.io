@@ -21,6 +21,7 @@ I also spent one year in Japan as an exchange student at [The University of Elec
 ## News
 
 - **[Oct. 2026]** I presented [VeXact](https://github.com/verl-project/vexact) in the talk "[When Rollout and Training Disagree: Lessons from Building a Mismatch-Free RL Engine](https://events.linuxfoundation.org/pytorch-conference-north-america/program/schedule/?id=1257767)" at PyTorch Conference North America 2026 in San Jose!
+- **[Aug. 2026]** I gave a talk on LLMProf, "[Low Overhead, Continuous Profiling for AI Services](./assets/files/LLMProf_Inferact_26.pdf)", at Inferact.
 - **[July. 2026]** LLMProf is accepted at SC'26.
 - **[May. 2026]** [VeXact](https://github.com/verl-project/vexact) is open source.
 - **[Nov. 2025]** Proton is accepted at CGO'26.
